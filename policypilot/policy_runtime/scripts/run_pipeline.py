@@ -8,6 +8,7 @@ os.environ.setdefault("NUMEXPR_NUM_THREADS", "1")
 
 import argparse
 import logging
+import signal
 import time
 from pathlib import Path
 
@@ -105,45 +106,60 @@ def main():
     if not cfg.env.is_sim:
         pipeline.prepare()
 
+    # Convert SIGINT/SIGTERM into KeyboardInterrupt so the loop exits through
+    # the `finally` below and env.shutdown() (damping cmds) actually runs.
+    # Without this, policy_manager's SIGTERM kills the process mid-step and
+    # the motor firmware keeps holding the last position-PD setpoint.
+    def _request_exit(signum, frame):
+        raise KeyboardInterrupt
+
+    signal.signal(signal.SIGINT, _request_exit)
+    signal.signal(signal.SIGTERM, _request_exit)
+
     warn_drop_s = max(0.010, 0.5 * pipeline.dt)
     critical_drop_s = 0.2
     hard_drop_s = 1.0
     excessive_drop_count = 0
 
-    while True:
-        time_start = time.perf_counter()
-        pipeline.step()
-        time_end = time.perf_counter()
-        time_diff = time_end - time_start
+    try:
+        while True:
+            time_start = time.perf_counter()
+            pipeline.step()
+            time_end = time.perf_counter()
+            time_diff = time_end - time_start
 
-        # keep the pipeline running at the desired frequency
-        if not cfg.run_fullspeed:
-            time_diff = pipeline.dt - time_diff
-            if time_diff > 0:
-                time.sleep(time_diff)
-            else:
-                if not cfg.env.is_sim:
-                    if time_diff < -warn_drop_s:
-                        logger.warning(f"Warning: frame drop -> {time_diff}")
-                    if time_diff < -hard_drop_s:
-                        logger.critical("Exiting due to severe frame stall")
-                        pipeline.env.shutdown()
-                        time.sleep(10)
-                        break
-                    if time_diff < -critical_drop_s:
-                        excessive_drop_count += 1
-                        logger.error(
-                            "Excessive frame drop count=%s -> %s",
-                            excessive_drop_count,
-                            time_diff,
-                        )
-                        if excessive_drop_count >= 3:
-                            logger.critical("Exiting due to sustained excessive frame drop")
-                            pipeline.env.shutdown()
-                            time.sleep(10)
+            # keep the pipeline running at the desired frequency
+            if not cfg.run_fullspeed:
+                time_diff = pipeline.dt - time_diff
+                if time_diff > 0:
+                    time.sleep(time_diff)
+                else:
+                    if not cfg.env.is_sim:
+                        if time_diff < -warn_drop_s:
+                            logger.warning(f"Warning: frame drop -> {time_diff}")
+                        if time_diff < -hard_drop_s:
+                            logger.critical("Exiting due to severe frame stall")
                             break
-                    else:
-                        excessive_drop_count = 0
+                        if time_diff < -critical_drop_s:
+                            excessive_drop_count += 1
+                            logger.error(
+                                "Excessive frame drop count=%s -> %s",
+                                excessive_drop_count,
+                                time_diff,
+                            )
+                            if excessive_drop_count >= 3:
+                                logger.critical("Exiting due to sustained excessive frame drop")
+                                break
+                        else:
+                            excessive_drop_count = 0
+    except KeyboardInterrupt:
+        logger.info("Exit signal received; shutting down pipeline.")
+    finally:
+        if not cfg.env.is_sim:
+            try:
+                pipeline.env.shutdown()
+            except Exception as exc:
+                logger.error("env.shutdown failed: %s", exc)
 
 
 if __name__ == "__main__":

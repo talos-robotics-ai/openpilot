@@ -51,6 +51,15 @@ class UnitreeEnv(Environment):
 
         ChannelFactoryInitialize(0, self.cfg_env.unitree.net_if)
 
+        # Take exclusive ownership of the low-level command topic by releasing
+        # any onboard high-level controller (sport_mode_service / loco / ai).
+        # Without this, the onboard service keeps publishing to rt/lowcmd in
+        # parallel and outlives this process — the handheld remote can then
+        # keep driving the robot after the policy stops.
+        self._motion_switcher = None
+        if self.enabled:
+            self._release_onboard_mode()
+
         self.RemoteControllerHandler = None
         self.robot = self.cfg_env.unitree.robot
         self._control_dt = self.cfg_env.unitree.control_dt
@@ -445,8 +454,83 @@ class UnitreeEnv(Environment):
         self.control_joints(positions, hand_pose)
 
     def shutdown(self):
-        self.set_damping_mode()
+        """
+        Bring the robot to a safe damped state and stop publishing.
+
+        Order matters:
+          1. Flip ``enabled`` off so the recurrent send-loop stops emitting
+             stale position-PD targets.
+          2. Spam a damping command for a short window so the motor firmware
+             reliably transitions out of stiff position-hold into damping
+             (a single packet can be missed). Without this, the robot would
+             stay frozen in the last commanded stance rather than collapsing.
+
+        Onboard high-level mode is intentionally NOT restored here — by
+        design, after shutdown nothing else should drive the robot.
+        """
         self.enabled = False
+
+        try:
+            damp_period_s = 0.25
+            dt = max(self._control_dt, 1e-3)
+            steps = max(1, int(damp_period_s / dt))
+            for _ in range(steps):
+                create_damping_cmd(self.low_cmd)
+                self.send_cmd(self.low_cmd)
+                time.sleep(dt)
+        except Exception as exc:
+            logger.warning("[UnitreeEnv] damping send failed during shutdown: %s", exc)
+
+    def _release_onboard_mode(self):
+        """Tell motion_switcher to release any active high-level mode."""
+        try:
+            from unitree_sdk2py.comm.motion_switcher.motion_switcher_client import (  # type: ignore
+                MotionSwitcherClient,
+            )
+        except Exception as exc:
+            logger.warning(
+                "[UnitreeEnv] MotionSwitcherClient unavailable, skipping onboard mode release: %s",
+                exc,
+            )
+            return
+
+        try:
+            msc = MotionSwitcherClient()
+            msc.SetTimeout(5.0)
+            msc.Init()
+        except Exception as exc:
+            logger.warning("[UnitreeEnv] could not init MotionSwitcherClient: %s", exc)
+            return
+
+        try:
+            _, result = msc.CheckMode()
+            attempts = 0
+            while isinstance(result, dict) and result.get("name") and attempts < 10:
+                logger.info(
+                    "[UnitreeEnv] releasing onboard mode '%s' (attempt %d)",
+                    result.get("name"),
+                    attempts + 1,
+                )
+                msc.ReleaseMode()
+                time.sleep(0.5)
+                _, result = msc.CheckMode()
+                attempts += 1
+
+            active = isinstance(result, dict) and result.get("name")
+            if active:
+                logger.warning(
+                    "[UnitreeEnv] onboard mode still reports '%s' after %d releases — "
+                    "policy may fight onboard control.",
+                    result.get("name"),
+                    attempts,
+                )
+            else:
+                logger.info("[UnitreeEnv] onboard high-level control released; this process owns rt/lowcmd")
+        except Exception as exc:
+            logger.warning("[UnitreeEnv] release sequence failed: %s", exc)
+            return
+
+        self._motion_switcher = msc
 
     def set_zero_torque_mode(self):
         create_zero_cmd(self.low_cmd)
