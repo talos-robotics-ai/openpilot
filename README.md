@@ -100,7 +100,4 @@ When adding a new package as a sibling to `policypilot/`:
 
 ---
 
-## License
 
-Each package carries its own LICENSE file. By default packages here
-ship under BSD-3-Clause unless their own LICENSE says otherwise.
