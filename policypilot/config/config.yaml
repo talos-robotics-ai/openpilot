@@ -2,7 +2,7 @@ general:
   use_sim_time: false
   use_robot: true
   publish_joint_states: true
-  interface: enxc8a362edcebb
+  interface: enp12s0
   sim_rate_hz: 50.0
   arm_controlled: both
   enable_arm_ui: true
@@ -40,7 +40,7 @@ policy:
   # Which RoboJuDo cfg_registry entry to spawn. g1_amo_real = AMO balance only,
   # no arm teleop. Use g1_amo_arm_teleop_real if you want arm overrides.
   config_name: g1_amo_real
-  interface: enxc8a362edcebb
+  interface: enp12s0
   record: false
 
   img_server_ip: 192.168.123.164

@@ -14,7 +14,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/pelvis.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/pelvis.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -30,7 +30,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/pelvis_contour_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/pelvis_contour_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -39,7 +39,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/pelvis_contour_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/pelvis_contour_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -58,7 +58,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_hip_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_hip_pitch_link.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -67,7 +67,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_hip_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_hip_pitch_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -87,7 +87,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_hip_roll_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_hip_roll_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -96,7 +96,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_hip_roll_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_hip_roll_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -116,7 +116,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_hip_yaw_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_hip_yaw_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -125,7 +125,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_hip_yaw_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_hip_yaw_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -145,7 +145,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_knee_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_knee_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -154,7 +154,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_knee_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_knee_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -174,7 +174,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_ankle_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_ankle_pitch_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -183,7 +183,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_ankle_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_ankle_pitch_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -203,7 +203,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_ankle_roll_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_ankle_roll_link.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -299,7 +299,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_hip_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_hip_pitch_link.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -308,7 +308,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_hip_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_hip_pitch_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -328,7 +328,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_hip_roll_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_hip_roll_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -337,7 +337,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_hip_roll_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_hip_roll_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -357,7 +357,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_hip_yaw_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_hip_yaw_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -366,7 +366,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_hip_yaw_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_hip_yaw_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -386,7 +386,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_knee_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_knee_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -395,7 +395,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_knee_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_knee_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -415,7 +415,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_ankle_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_ankle_pitch_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -424,7 +424,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_ankle_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_ankle_pitch_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -444,7 +444,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_ankle_roll_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_ankle_roll_link.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -541,7 +541,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/waist_yaw_link_rev_1_0.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/waist_yaw_link_rev_1_0.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -564,7 +564,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/waist_roll_link_rev_1_0.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/waist_roll_link_rev_1_0.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -587,7 +587,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/torso_link_rev_1_0.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/torso_link_rev_1_0.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -596,7 +596,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/torso_link_rev_1_0.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/torso_link_rev_1_0.STL"/>
       </geometry>
     </collision>
   </link>
@@ -623,7 +623,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/logo_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/logo_link.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -632,7 +632,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/logo_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/logo_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -647,7 +647,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/head_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/head_link.STL"/>
       </geometry>
       <material name="dark">
         <color rgba="0.2 0.2 0.2 1"/>
@@ -656,7 +656,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/head_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/head_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -708,7 +708,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_shoulder_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_shoulder_pitch_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -737,7 +737,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_shoulder_roll_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_shoulder_roll_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -766,7 +766,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_shoulder_yaw_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_shoulder_yaw_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -775,7 +775,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_shoulder_yaw_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_shoulder_yaw_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -795,7 +795,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_elbow_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_elbow_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -804,7 +804,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_elbow_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_elbow_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -831,7 +831,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_wrist_roll_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_wrist_roll_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -840,7 +840,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_wrist_roll_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_wrist_roll_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -860,7 +860,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_wrist_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_wrist_pitch_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -869,7 +869,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_wrist_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_wrist_pitch_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -889,7 +889,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_wrist_yaw_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_wrist_yaw_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -898,7 +898,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_wrist_yaw_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_wrist_yaw_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -916,7 +916,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/left_rubber_hand.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/left_rubber_hand.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -941,7 +941,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_shoulder_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_shoulder_pitch_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -970,7 +970,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_shoulder_roll_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_shoulder_roll_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -999,7 +999,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_shoulder_yaw_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_shoulder_yaw_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1008,7 +1008,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_shoulder_yaw_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_shoulder_yaw_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1028,7 +1028,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_elbow_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_elbow_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1037,7 +1037,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_elbow_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_elbow_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1064,7 +1064,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_wrist_roll_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_wrist_roll_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1073,7 +1073,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_wrist_roll_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_wrist_roll_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1093,7 +1093,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_wrist_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_wrist_pitch_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1102,7 +1102,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_wrist_pitch_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_wrist_pitch_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1122,7 +1122,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_wrist_yaw_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_wrist_yaw_link.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>
@@ -1131,7 +1131,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_wrist_yaw_link.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_wrist_yaw_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -1149,7 +1149,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://g1pilot/description_files/meshes/right_rubber_hand.STL"/>
+        <mesh filename="package://policypilot/description_files/meshes/right_rubber_hand.STL"/>
       </geometry>
       <material name="white">
         <color rgba="0.7 0.7 0.7 1"/>

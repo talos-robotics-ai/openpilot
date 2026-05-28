@@ -94,7 +94,7 @@ class g1_amo_real(RlPipelineCfg):
     env: G1RealEnvCfg = G1RealEnvCfg(
         env_type="UnitreeEnv",
         unitree=G1UnitreeCfg(
-            net_if="enxc8a362edcebb",
+            net_if="enp12s0",
             control_dt=1.0 / 120.0,
         ),
     )
@@ -118,7 +118,7 @@ class g1_amo_arm_teleop_real(RlPipelineCfg):
     env: G1RealEnvCfg = G1RealEnvCfg(
         env_type="UnitreeEnv",
         unitree=G1UnitreeCfg(
-            net_if="enxc8a362edcebb",
+            net_if="enp12s0",
             control_dt=1.0 / 120.0,
         ),
     )
