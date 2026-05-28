@@ -62,22 +62,24 @@ inverse_kinematics:
   kd_wrist: 1.5
 
 home:
+  # AMO arm home pose. motor_1..motor_7 = shoulder_pitch, shoulder_roll,
+  # shoulder_yaw, elbow, wrist_roll, wrist_pitch, wrist_yaw (radians).
   right:
-    motor_1: 0.6604386568069458
-    motor_2: -0.09250623732805252
-    motor_3: 0.022230736911296844
-    motor_4: -0.839135468006134
-    motor_5: 0.10722286254167557
-    motor_6: 0.2716066539287567
-    motor_7: 0.06743379682302475
+    motor_1: 0.5
+    motor_2: 0.0
+    motor_3: -0.2
+    motor_4: 0.3
+    motor_5: 0.0
+    motor_6: 0.0
+    motor_7: 0.0
   left:
-    motor_1: 0.9230489730834961
-    motor_2: -0.06001700088381767
-    motor_3: 0.03733086213469505
-    motor_4: -0.7793461680412292
-    motor_5: -0.06614094227552414
-    motor_6: -0.11401312798261642
-    motor_7: -0.29750025272369385
+    motor_1: 0.5
+    motor_2: 0.0
+    motor_3: 0.2
+    motor_4: 0.3
+    motor_5: 0.0
+    motor_6: 0.0
+    motor_7: 0.0
 
 workspace:
   frame: pelvis
