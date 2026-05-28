@@ -11,10 +11,8 @@ policypilot/
 └── policy_runtime/     ← Vendored RoboJuDo tree — runs in a separate Python env
 ```
 
-Unlike the upstream `g1pilot`, this package intentionally **does not include
-VR/arm teleoperation** (no TeleVision, no wrist/hand ZMQ bridges, no glove
-inputs). The package is built around running policies (the "policypilot"
-name) and exposing the supporting ROS-side plumbing.
+The package is built around running policies (the "policypilot" name) and
+exposing the supporting ROS-side plumbing.
 
 Operator control is provided through:
 - a **PyQt6 dashboard** (`control_panel`) for high-level buttons:
@@ -213,22 +211,6 @@ RoboJuDo config tree but expects the wrist/hand ZMQ feeds that policypilot
 does not provide).
 
 Full breakdown: [docs/ROBOJUDO_INTEGRATION.md](docs/ROBOJUDO_INTEGRATION.md).
-
----
-
-## What this package does NOT include (vs upstream g1pilot)
-
-| Removed | Why |
-| --- | --- |
-| `teleoperation/joystick.py` | Joystick input — out of scope for a policy-runner package |
-| `teleoperation/joy_mux.py`  | Joystick mux — same |
-| `teleoperation/ui_interface.py` | PyQt teleop dashboard — same |
-| `g1_amo_arm_teleop_real` as default | Arm teleop pipeline; requires VR/wrist ZMQ inputs |
-| `wrist_zmq*`, `hand_zmq*`, `ee=inspire_dfx` parameters | VR/glove inputs |
-
-The arm and hand *DDS controllers* (`arm_controller`, `dx3_controller`) are
-kept because they are general-purpose ROS-side actuators driven by any node
-that publishes a goal — they are not teleop-specific.
 
 ---
 

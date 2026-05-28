@@ -56,26 +56,9 @@ The ROS Python package is grouped by **what the code controls**:
 | `utils/` | IK, joint maps, config helpers (no ROS in itself) | nothing |
 | `tools/` | Standalone debug scripts | varies |
 
-We removed `teleoperation/` entirely. The directory existed in `g1pilot`
-purely because that project mixed *VR/arm teleop bridges* (wrist ZMQ,
-hand glove) with the *policy launcher* and the *operator dashboard*. Here:
-
-- the launcher lives in `policy/`,
-- the operator dashboard lives in `dashboard/`,
-- the VR/arm teleop bridges simply do not exist.
-
 The dashboard publishes lifecycle topics only — it owns no robot state —
 which keeps the door open for replacing it with a web UI, a CLI, or
 another front-end without touching the rest of the stack.
-
-### Renames from g1pilot
-
-| g1pilot | policypilot | Reason |
-| --- | --- | --- |
-| `teleoperation/low_level_manager.py` | `policy/policy_manager.py` | The node never was a "low level" thing — it's the policy supervisor |
-| `navigation/` | `locomotion/` | The bulk of the code is loco-RPC, not nav-stack |
-| `/g1pilot/low_level/*` topics | `/policypilot/policy/*` | Matches the new node naming |
-| `G1PILOT_*` env vars | `POLICYPILOT_*` | Cosmetic but consistent |
 
 ## 3. Configuration: one yaml, one schema
 
@@ -123,20 +106,14 @@ ros2 launch policypilot bringup_launcher.launch.py start_policy:=false
 hot LiDAR feed before it can initialize, so the operational pattern is
 "start bringup, wait for LiDAR, then start MOLA in a second terminal."
 
-## 5. What is *not* in this package
+## 5. Scope notes
 
-These are intentional omissions, not TODOs:
-
-- **VR / arm teleop** — no wrist-pose feeds, no `TeleVision`, no hand-glove
-  ZMQ bridges. The `g1_amo_arm_teleop_real` pipeline is still present in the
-  bundled RoboJuDo for advanced users, but the ROS side does not feed it.
-- **Joystick mux for the AMO policy** — the AMO controller reads the
-  Unitree handheld remote directly from the DDS bus, so a ROS-side
-  joystick → policy bridge would be redundant. The dashboard does ship for
-  high-level lifecycle (start/stop/balance/arms).
-- **Training infrastructure** — RoboJuDo's training side is not the focus
-  here. policypilot is a *runtime* package; train policies upstream and
-  drop checkpoints into `policy_runtime/`.
+- The AMO controller reads the Unitree handheld remote directly from the
+  DDS bus, so policypilot does not provide a ROS-side joystick → policy
+  bridge. The dashboard ships for high-level lifecycle
+  (start/stop/balance/arms).
+- policypilot is a *runtime* package. Training and policy authoring live
+  upstream in RoboJuDo; drop trained checkpoints into `policy_runtime/`.
 
 ## 6. When you should add something here
 
