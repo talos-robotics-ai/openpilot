@@ -1,0 +1,1 @@
+docker build -t policypilot_camera -f camera.Dockerfile .

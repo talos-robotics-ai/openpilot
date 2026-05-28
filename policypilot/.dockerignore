@@ -1,0 +1,27 @@
+# Keep the docker build context lean. policy_runtime/ stays in (the
+# Dockerfile COPYs it), but caches / VCS / build artifacts do not need to
+# be uploaded to the daemon.
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+.git/
+.gitignore
+.gitmodules
+.codex/
+**/.pytest_cache/
+**/*.egg-info/
+
+# Local ROS build artifacts (if the host has built outside docker)
+build/
+install/
+log/
+
+# Run logs / scratch
+runs/
+policy_runtime/logs/
+**/__pycache__
+
+# Editor noise
+.vscode/
+.idea/
+*.swp

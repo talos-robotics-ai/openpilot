@@ -1,0 +1,31 @@
+# Python
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.egg-info/
+*.egg
+
+# ROS 2 build artifacts
+build/
+install/
+log/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Run logs
+**/runs/
+**/logs/
+
+# Secrets — never commit
+.env
+*.env
+*credentials*
+*secret*
