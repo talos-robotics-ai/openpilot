@@ -2,7 +2,7 @@
   <img src="logo.png" alt="Talos Robotics AI" width="320"/>
 </p>
 
-# openpilot — Talos Robotics AI
+# openpilot
 
 `openpilot` is a project from **Talos Robotics AI** that we're sharing
 with the broader humanoid-robotics community in the hope that other
