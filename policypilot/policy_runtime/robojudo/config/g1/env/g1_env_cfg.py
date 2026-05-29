@@ -46,8 +46,11 @@ class G1_29DoF(DoFConfig):
         *[-0.1, 0.0, 0.0, 0.3, -0.2, 0.0],
         *[-0.1, 0.0, 0.0, 0.3, -0.2, 0.0],
         *[0, 0, 0],
-        *[0, 0, 0, 0, 0, 0, 0],
-        *[0, 0, 0, 0, 0, 0, 0],
+        # arms held in a "triangle" guard pose: shoulders slightly back,
+        # elbows at 90 deg, forearms angled inward.
+        # joints per arm: shoulder_pitch, shoulder_roll, shoulder_yaw, elbow, wrist_roll, wrist_pitch, wrist_yaw
+        *[-0.3, 0.15, -0.4, 1.57, 0, 0, 0],
+        *[-0.3, -0.15, 0.4, 1.57, 0, 0, 0],
     ]
 
     stiffness: list[float] | None = [

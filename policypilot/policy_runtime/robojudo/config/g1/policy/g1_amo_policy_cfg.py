@@ -29,8 +29,12 @@ class G1AmoDoF(DoFConfig):
         *[-0.1, 0.0, 0.0, 0.3, -0.2, 0.0],
         *[-0.1, 0.0, 0.0, 0.3, -0.2, 0.0],
         *[0.0, 0.0, 0.0],
-        *[0.5, 0.0, 0.2, 0.3],
-        *[0.5, 0.0, -0.2, 0.3],
+        # Aligned with env arm default (triangle guard pose) so the policy's
+        # (dof_pos - default_dof_pos) arm term sits at ~0 rather than the
+        # training-time offset. Joints per arm here exclude wrists.
+        # shoulder_pitch, shoulder_roll, shoulder_yaw, elbow
+        *[-0.3, 0.15, -0.4, 1.57],
+        *[-0.3, -0.15, 0.4, 1.57],
     ]
 
     stiffness: list[float] | None = [
@@ -87,9 +91,14 @@ class G1AmoPolicyCfg(AMOPolicyCfg):
     obs_dof: DoFConfig = G1AmoDoF()
     action_dof: DoFConfig = G1AmoLowerDoF()
 
+    # Max command magnitudes per axis after the stick has been shaped
+    # (deadzone + cubic curve in AMOPolicy._get_commands). Kept conservative
+    # to avoid driving the policy outside its training distribution.
+    # Sign conventions preserved from upstream: positive stick on rx/lx maps
+    # to a negative command.
     commands_map: list[list[float]] = [
-        [-1.0, 0.0, 1.0],  # vel_y
-        [0.2, 0.0, -0.2],  # ang_z
-        [0.8, 0.0, -0.8],  # vel_x
-        [0.3, 0.75, 0.9],  # height
+        [-0.5, 0.0, 0.5],   # vel_y (forward), m/s
+        [0.4, 0.0, -0.4],   # ang_z (yaw rate), rad/s
+        [0.4, 0.0, -0.4],   # vel_x (lateral), m/s
+        [0.3, 0.75, 0.9],   # height
     ]
