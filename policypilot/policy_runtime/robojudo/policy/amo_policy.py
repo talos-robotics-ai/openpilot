@@ -87,6 +87,21 @@ class AMOPolicy(Policy):
     def post_step_callback(self, commands=None):
         self.timestep += 1
 
+    # Stick shaping: large deadzone (kills jitter / unintended commands at rest)
+    # plus a cubic curve so small deflections produce tiny outputs and the policy
+    # only sees aggressive commands at near-full stick deflection.
+    _STICK_DEADZONE = 0.15
+    _STICK_EXPO = 3.0
+
+    @classmethod
+    def _shape_axis(cls, raw: float) -> float:
+        if abs(raw) < cls._STICK_DEADZONE:
+            return 0.0
+        sign = 1.0 if raw > 0.0 else -1.0
+        mag = (abs(raw) - cls._STICK_DEADZONE) / (1.0 - cls._STICK_DEADZONE)
+        mag = min(1.0, max(0.0, mag))
+        return float(sign * (mag ** cls._STICK_EXPO))
+
     def _get_commands(self, ctrl_data):
         # if (ref_dof_pos := ctrl_data.get("ref_dof_pos", None)) is not None:
         #     self.arm_action = ref_dof_pos.copy()[-self._n_demo_dof :]
@@ -95,7 +110,10 @@ class AMOPolicy(Policy):
         for key in ctrl_data.keys():
             if key in ["JoystickCtrl", "UnitreeCtrl"]:
                 axes = ctrl_data[key]["axes"]
-                lx, ly, rx, ry = axes["LeftX"], axes["LeftY"], axes["RightX"], axes["RightY"]
+                lx = self._shape_axis(axes["LeftX"])
+                ly = self._shape_axis(axes["LeftY"])
+                rx = self._shape_axis(axes["RightX"])
+                # ry reserved for height control (disabled)
 
                 commands[0] = command_remap(ly, self.commands_map[0])
                 commands[1] = command_remap(rx, self.commands_map[1])
