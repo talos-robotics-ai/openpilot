@@ -1,11 +1,94 @@
-# openpilot — Talos Robotics AI
+<p align="center">
+  <img src="logo.png" alt="Talos Robotics AI" width="320"/>
+</p>
 
-This repository is the umbrella for **Talos Robotics AI**'s humanoid
-control stack. It bundles the application-layer software we run on
-Unitree-class humanoids (currently the G1), grouped by package.
+# openpilot
 
-Each subdirectory is a self-contained project with its own README,
-build system and documentation — `openpilot` itself is just the index.
+`openpilot` is a project from **Talos Robotics AI** that we're sharing
+with the broader humanoid-robotics community in the hope that other
+teams find it useful. It bundles a unified humanoid control stack that
+runs, on the same robot and over the same bus, **both** a classical
+ROS 2 layer for sensors and state estimation **and** a deployment
+pipeline for RL policies.
+
+The defining choice in this repo is the merge of those two worlds.
+Policy outputs flow through our own pipeline and we publish low-level
+motor commands ourselves, instead of delegating that responsibility to
+a vendor's high-level SDK (Unitree's `sport_mode_service`, etc.). The
+goal is a **vendor-agnostic motor-control path**: the ROS application
+and the RL policy stack stay the same when the underlying robot or
+driver layer changes — only the thin env adapter beneath the pipeline
+swaps out.
+
+The repo is organised as an umbrella over self-contained packages
+(currently focused on Unitree-class humanoids, starting with the G1).
+Each subdirectory has its own README, build system, and documentation
+— `openpilot` itself is just the index that ties them together.
+
+---
+
+## Architecture overview
+
+The stack is split into two independent Python runtimes that share a
+single DDS bus and are bridged by exactly one ROS supervisor node.
+
+<p align="center">
+  <img src="diagram.svg" alt="openpilot architecture diagram" width="720"/>
+</p>
+
+- **ROS 2 layer** — sensor drivers (Livox, IMU), state estimation,
+  planners (nav2point / Dijkstra), RViz, and a PyQt6 operator
+  dashboard. Owns nothing about how policies generate motor commands.
+- **policy_runtime** — the RL deploy pipeline: policy + controller +
+  environment adapter. Owns motor command generation and the
+  low-level DDS write path.
+- **policy_manager** (a ROS node) is the only seam between the two
+  worlds. It spawns `policy_runtime` as a subprocess, watches its
+  lifecycle, and forwards start / stop / E-stop topics from the
+  dashboard.
+
+The two runtimes never share a Python interpreter — they only
+exchange data over DDS topics and over the supervisor's process
+handle. That separation is what keeps the application layer
+independent of the policy stack's Python pins (torch, mujoco, …).
+
+The vendor-specific surface is intentionally narrow: it lives in one
+**env adapter** inside `policy_runtime` (today `UnitreeEnv`, talking
+DDS via the Unitree SDK). Targeting a different robot means writing
+a sibling adapter — the ROS application and the policy stack stay
+untouched.
+
+For the full design rationale (why subprocess vs ROS node, why one
+supervisor, etc.) see
+[`policypilot/docs/ARCHITECTURE.md`](policypilot/docs/ARCHITECTURE.md).
+
+---
+
+## Where to start
+
+Read in this order:
+
+1. **[`policypilot/README.md`](policypilot/README.md)** — package
+   overview and a one-page tour of the ROS side.
+2. **[`policypilot/docs/QUICKSTART.md`](policypilot/docs/QUICKSTART.md)**
+   — Docker → dashboard → AMO walk in five steps.
+3. **[`policypilot/docs/ARCHITECTURE.md`](policypilot/docs/ARCHITECTURE.md)**
+   — the full two-runtimes-one-bus story.
+4. **[`policypilot/docs/ROBOJUDO_INTEGRATION.md`](policypilot/docs/ROBOJUDO_INTEGRATION.md)**
+   — how `policy_manager` spawns and supervises the pipeline subprocess.
+5. **[`policypilot/policy_runtime/README.md`](policypilot/policy_runtime/README.md)**
+   — the RoboJuDo runtime itself (configs, policies, controllers).
+
+Reference docs (read as needed):
+
+- [`policypilot/docs/CONFIGURATION.md`](policypilot/docs/CONFIGURATION.md)
+  — every yaml field, every ROS param.
+- [`policypilot/docs/ROS_NODES.md`](policypilot/docs/ROS_NODES.md) —
+  node-by-node responsibilities.
+- [`policypilot/docs/DOCKER.md`](policypilot/docs/DOCKER.md) — image
+  build, X11 forwarding, and bare-Linux replication.
+- [`policypilot/docs/INTERFACE.md`](policypilot/docs/INTERFACE.md) —
+  ROS topic / parameter contracts.
 
 ---
 
@@ -26,18 +109,7 @@ policy framework vendored as a sibling runtime (`policy_runtime/`).
   ROS 2 Humble, the `policypilot-runtime` conda env, Livox/MOLA, the
   Unitree SDK, PyQt6 and RViz2.
 
-**Read first:**
-- [`policypilot/README.md`](policypilot/README.md) — package overview.
-- [`policypilot/docs/QUICKSTART.md`](policypilot/docs/QUICKSTART.md) —
-  Docker → dashboard → AMO walk in five steps.
-- [`policypilot/docs/ARCHITECTURE.md`](policypilot/docs/ARCHITECTURE.md)
-  — design decisions and the two-runtimes-one-bus model.
-- [`policypilot/docs/DOCKER.md`](policypilot/docs/DOCKER.md) — build,
-  X11 forwarding, and the full package list for replicating the
-  environment on a bare Linux PC.
-- [`policypilot/docs/ROBOJUDO_INTEGRATION.md`](policypilot/docs/ROBOJUDO_INTEGRATION.md)
-  — how `policy_manager` spawns the RoboJuDo pipeline (env vars,
-  process group, lifecycle).
+For the per-doc reading order see [Where to start](#where-to-start) above.
 
 ---
 
@@ -100,4 +172,16 @@ When adding a new package as a sibling to `policypilot/`:
 
 ---
 
+## Acknowledgements
 
+This stack stands on two upstream projects that we merged together
+to form the application layer described above:
+
+- **g1pilot** — ROS 2 application layer for the Unitree G1 (sensors,
+  state, locomotion, manipulation, dashboard).
+- **RoboJuDo** — RL policy deploy framework, vendored under
+  [`policypilot/policy_runtime/`](policypilot/policy_runtime/).
+
+Both were independent projects; combining them under one roof is what
+made the vendor-agnostic motor-control path possible. Thanks to the
+maintainers of each.
