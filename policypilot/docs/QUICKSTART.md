@@ -29,6 +29,8 @@ If anything above is non-default for you, read
 [DOCKER.md](DOCKER.md) before continuing.
 
 ---
+## Step 0 — modify the interfaces to connect your computer to the g1 with a lan cable
+Go and read the [INTERFACE.md](INTERFACE.md) file
 
 ## Step 1 — Build the Docker image (one-time)
 
@@ -109,14 +111,12 @@ On the dashboard:
   └──────────┴───────────┴───────────┴──────────┴──────────┘
 ```
 
-1. Press **`START + BALANCE`** first.
-   This sends the Unitree loco RPC sequence (Start → BalanceStand) so
-   the robot is upright and the joints are alive. Watch the robot
-   stiffen and stand.
 
-2. Press **`AMO WALK`**.
-   The button flashes green and the status bar switches to
-   `POLICY: RUNNING | started pid=...`.
+
+1. Press **`AMO WALK`**.
+   Start it with the robot hanging on the harness and the feet slightly touching the ground.
+   The robot should balance and after you can control it with the unitree controller.
+   This process takes up to a minute. Don't stand close to the robot while performing this operation.
 
    Under the hood, `policy_manager` ran:
 
